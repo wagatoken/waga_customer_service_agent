@@ -3,8 +3,8 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-org/google-agent-dev-kit.git
-cd google-agent-dev-kit
+git clone https://github.com/wagatoken/waga_customer_service_agent.git
+cd waga_customer_service_agent
 ```
 
 ### 2. Create a Virtual Environment (Python example)
