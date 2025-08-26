@@ -1,4 +1,5 @@
 import json
+import datetime
 from google.adk.agents import Agent
 
 
@@ -22,6 +23,25 @@ def get_courses():
         courses = json.load(f)
 
     return {"courses": courses}
+
+
+def get_events():
+    """
+    Retrieves information about upcoming events 
+
+
+    """
+    with open("events_rows.json", "r") as f:
+        events = json.load(f)
+
+    return {"events": events}
+
+
+def get_current_date():
+    """
+    Returns the current date
+    """
+    return {"current_date": datetime.date.today().isoformat()}
 
 
 with open("knowledgeBase.txt", "r") as c:
@@ -48,11 +68,11 @@ RULES FOR RESPONSES.
 1) Be as brief and concise as possible
 2) Don't Hallucinate if you don't know the answer clearly state it and suggest to connect to a human
 3) If the user asks about topics that's not related to waga academy respectfully let them know it's out of your scope
+4) If the user has a question about available courses you  can call the 'get_courses' function to get all the available courses
+5) If the user has a question about events you can call the 'get_events' function to get all the upcoming events also use the `get_current_date` function to get the current date
 
-Here is the knowledge base for waga_academy {knowledge_base}
-
-If you are asked questions about the courses you  can call the 'get_courses' function to get all the available courses
+Here is the knowledge base for waga academy {knowledge_base}
 """
     ),
-    tools=[get_user_info, get_courses]
+    tools=[get_user_info, get_courses, get_events, get_current_date]
 )
