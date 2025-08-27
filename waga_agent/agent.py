@@ -44,8 +44,11 @@ def get_current_date():
     return {"current_date": datetime.date.today().isoformat()}
 
 
-with open("knowledgeBase.txt", "r") as c:
-    knowledge_base = c.read()
+with open("knowledgeBase.txt", "r") as f:
+    knowledge_base = f.read()
+
+with open("technicalSupport.txt", "r") as f:
+    technical_support = f.read()
 
 
 root_agent = Agent(
@@ -72,6 +75,8 @@ RULES FOR RESPONSES.
 5) If the user has a question about events you can call the 'get_events' function to get all the upcoming events also use the `get_current_date` function to get the current date
 
 Here is the knowledge base for waga academy {knowledge_base}
+
+Incase the user is in need of technicall support refere this techniical support knowledge base {technical_support} if you can't find anything relevant to the user let them know you don't know and suggest to connect them with human
 """
     ),
     tools=[get_user_info, get_courses, get_events, get_current_date]
