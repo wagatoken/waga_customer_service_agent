@@ -1,0 +1,12 @@
+Login
+- Go to https://academy.wagatoken.io/login
+- Enter your email and password and hit Enter
+Create an account
+- Go to https://academy.wagatoken.io/register
+- Fill out the form
+- submit the form
+- go to your email and confirm your email
+Forgot password
+- Go to https://academy.wagatoken.io/forgot-password
+- Enter your email address
+- Go to your email follow the link  and reset your password
