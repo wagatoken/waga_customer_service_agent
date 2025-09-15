@@ -2,6 +2,9 @@ import json
 import datetime
 from google.adk.agents import Agent
 
+from .tools.events import get_events
+from .tools.courses import get_courses
+
 
 def get_user_info():
     """
@@ -11,30 +14,6 @@ def get_user_info():
         NONE
     """
     return {"name": "Dagmawi Solomon"}
-
-
-def get_courses():
-    """
-    Retrieves information about all the published courses 
-
-
-    """
-    with open("courses_rows.json", "r") as f:
-        courses = json.load(f)
-
-    return {"courses": courses}
-
-
-def get_events():
-    """
-    Retrieves information about upcoming events 
-
-
-    """
-    with open("events_rows.json", "r") as f:
-        events = json.load(f)
-
-    return {"events": events}
 
 
 def get_current_date():
@@ -47,7 +26,7 @@ def get_current_date():
 with open("knowledgeBase.txt", "r") as f:
     knowledge_base = f.read()
 
-with open("technicalSupport.txt", "r") as f:
+with open("technical_support.txt", "r") as f:
     technical_support = f.read()
 
 
@@ -73,10 +52,12 @@ RULES FOR RESPONSES.
 3) If the user asks about topics that's not related to waga academy respectfully let them know it's out of your scope
 4) If the user has a question about available courses you  can call the 'get_courses' function to get all the available courses
 5) If the user has a question about events you can call the 'get_events' function to get all the upcoming events also use the `get_current_date` function to get the current date
+6) When asked for questions related to date call the `get_current_date` function and make sure you respond with an accurate response
 
 Here is the knowledge base for waga academy {knowledge_base}
 
 Incase the user is in need of technicall support refere this techniical support knowledge base {technical_support} if you can't find anything relevant to the user let them know you don't know and suggest to connect them with human
+
 """
     ),
     tools=[get_user_info, get_courses, get_events, get_current_date]
