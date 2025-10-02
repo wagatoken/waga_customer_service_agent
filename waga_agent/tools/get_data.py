@@ -5,7 +5,10 @@ from supabase import create_client, Client
 
 load_dotenv()
 
-key: str = os.getenv("SUPABASE_KEY")
-url: str = os.getenv("SUPABASE_URL")
 
-SUPABASE_CLIENT: Client = create_client(url, key)
+def get_supabase_client() -> Client:
+    url = os.getenv("SUPABASE_URL")
+    key = os.getenv("SUPABASE_KEY")
+    if not url or not key:
+        raise ValueError("SUPABASE_URL or SUPABASE_KEY is not set!")
+    return create_client(url, key)
