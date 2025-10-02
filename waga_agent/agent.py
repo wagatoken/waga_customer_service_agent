@@ -1,5 +1,6 @@
 import json
 import datetime
+import os
 from google.adk.agents import Agent
 
 from .tools.events import get_events
@@ -13,7 +14,7 @@ def get_user_info():
     Args:
         NONE
     """
-    return {"name": "Dagmawi Solomon"}
+    return "User"
 
 
 def get_current_date():
@@ -23,10 +24,14 @@ def get_current_date():
     return {"current_date": datetime.date.today().isoformat()}
 
 
-with open("knowledgeBase.txt", "r") as f:
+# Use absolute path to ensure files are found regardless of execution directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+
+with open(os.path.join(project_root, "knowledgeBase.txt"), "r") as f:
     knowledge_base = f.read()
 
-with open("technical_support.txt", "r") as f:
+with open(os.path.join(project_root, "technical_support.txt"), "r") as f:
     technical_support = f.read()
 
 
